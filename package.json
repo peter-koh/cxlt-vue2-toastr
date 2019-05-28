@@ -12,6 +12,7 @@
         "lint": "eslint --fix --ext .js,.vue src test/unit/specs test/e2e/specs"
     },
     "dependencies": {
+        "evaporate": "^2.1.4",
         "vue": "^2.2.2"
     },
     "devDependencies": {
