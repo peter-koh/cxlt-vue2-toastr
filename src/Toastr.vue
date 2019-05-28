@@ -152,7 +152,23 @@ export default {
         hideToastr() {
             clearTimeout(this.sto)
             clearTimeout(this.progress.intervalId)
+            const fileKey = this.fileKey
+            const evaporate = this.evaporate
+             if (fileKey === null || evaporate === null) {
+             return false
+      }
+      evaporate.cancel(fileKey).then(() => {
+        this.color = 'warn'
+        this.cancelDisabled = true
+        this.uploadState = ' ... cancelled'
+        // setTimeout(this.tryClose, 3000)
+      })
+      this.$toast.error({
+        title: this.$t('error-message'),
+        timeOut: 60000
+      })
             this.show = false
+
         },
         refreshProgress() {
             this.progress.percent = ((this.progress.hideEta - (new Date().getTime())) / this.timeOut) * 100
